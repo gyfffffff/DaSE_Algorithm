@@ -6,7 +6,7 @@ from sklearn.preprocessing import LabelEncoder
 rawdata = pd.read_csv('ml-latest-small/ratings.csv')
 le = LabelEncoder()
 rawdata['movieId_ec'] = le.fit_transform(rawdata['movieId'])
-rawdata = rawdata.drop(columns=['movieId','timestamp'])
+rawdata = rawdata.drop(columns=['timestamp'])
 
 rawdata_ndarray = rawdata.values  # 得到numpy矩阵
 n = rawdata_ndarray.shape[0]
@@ -19,8 +19,11 @@ mn = len(set(movielist))
 UIMatrix = np.zeros((un+1,mn+1)).astype(int)
 for i in range(n):
     u = int(rawdata_ndarray[i, 0])
-    m = int(rawdata_ndarray[i, 2])
-    r = int(rawdata_ndarray[i, 1])
+    m = int(rawdata_ndarray[i, 3])
+    r = int(rawdata_ndarray[i, 2])
     UIMatrix[u, m] = r
-np.save('UIMatrix', UIMatrix)
+np.save('UIMatrix', UIMatrix[1:301, :5000])
+np.save("movie_map", rawdata_ndarray[[1,3], :])
 
+
+#%%
