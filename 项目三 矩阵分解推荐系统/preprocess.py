@@ -23,7 +23,15 @@ for i in range(n):
     r = rawdata_ndarray[i, 2]
     UIMatrix[u, m] = r
 np.save('UIMatrix', UIMatrix[1:301, :3000])
-np.save("movie_map", rawdata_ndarray[:, [1,3]])  # movieID, movieID-encoded
+np.save('movie_map.npy', rawdata_ndarray)
+# movies = pd.read_csv('ml-latest-small/movies.csv')
+# rawdata = rawdata.drop(columns=['userId, rating'])
+# # for index, row in rawdata.iterrows():
+# #     mid = row['movieId']
+# #     rawdata['title'] = movies[movies['movieId']==mid]['title']
+# #     rawdata['genres'] = movies[movies['movieId']==mid]['genres']
+# #     break
+# rawdata.to_csv('movie_map.csv')  # movieID, movieID-encoded
 
 
 #%%
