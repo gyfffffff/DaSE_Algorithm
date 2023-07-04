@@ -16,14 +16,14 @@ movielist = rawdata['movieId_ec'].astype(int)
 un = len(set(usrlist))
 mn = len(set(movielist))
 
-UIMatrix = np.zeros((un+1,mn+1)).astype(int)
+UIMatrix = np.zeros((un+1,mn+1))
 for i in range(n):
     u = int(rawdata_ndarray[i, 0])
     m = int(rawdata_ndarray[i, 3])
-    r = int(rawdata_ndarray[i, 2])
+    r = rawdata_ndarray[i, 2]
     UIMatrix[u, m] = r
-np.save('UIMatrix', UIMatrix[1:301, :5000])
-np.save("movie_map", rawdata_ndarray[[1,3], :])
+np.save('UIMatrix', UIMatrix[1:301, :3000])
+np.save("movie_map", rawdata_ndarray[:, [1,3]])  # movieID, movieID-encoded
 
 
 #%%
